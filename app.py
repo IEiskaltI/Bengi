@@ -12,24 +12,28 @@ t = np.linspace(0, 2 * np.pi, 100)
 x_herz = 16 * np.sin(t) ** 3
 y_herz = 13 * np.cos(t) - 5 * np.cos(2 * t) - 2 * np.cos(3 * t) - np.cos(4 * t)
 
-# Bengisu Buchstaben Koordinaten (vereinfachtes Schreiben)
-bengisu_x = [-10, -10, -8, -8, np.nan,  # B
-             -6, -6, -6, np.nan,        # E
-             -4, -4, -4, np.nan,        # N
-             -2, -2, -2, np.nan,        # G
-              0,  0,  0, np.nan,        # I
-              2,  2,  2, np.nan,        # S
-              4,  4,  4]                # U
+# Bengisu Buchstaben Koordinaten (grob vereinfacht)
+bengisu_x = np.array([-8, -8, -6, -6, np.nan,  # B
+                      -4, -4, -4, np.nan,       # E
+                      -2, -2, -2, np.nan,       # N
+                       0,  0,  0, np.nan,       # G
+                       2,  2,  2, np.nan,       # I
+                       4,  4,  4, np.nan,       # S
+                       6,  6,  6])              # U
 
-bengisu_y = [4, -4, -4, 4, np.nan,      # B
-             4, -4, -4, np.nan,         # E
-             4, -4,  4, np.nan,         # N
-             4, -4, -2, np.nan,         # G
-             4, -4, -4, np.nan,         # I
-             4, -4, -2, np.nan,         # S
-             4, -4, -2]                 # U
+bengisu_y = np.array([4, -4, -4, 4, np.nan,    # B
+                      4, -4, -4, np.nan,       # E
+                      4, -4,  4, np.nan,       # N
+                      4, -4, -2, np.nan,       # G
+                      4, -4, -4, np.nan,       # I
+                      4, -4, -2, np.nan,       # S
+                      4, -4, -2])              # U
 
-# Frames für Animation
+# Zweites Herz unterhalb des ersten
+x_herz2 = x_herz
+y_herz2 = y_herz - 15  # nach unten verschieben
+
+# Frames für Animation erstellen
 frames = []
 
 # Erstes Herz zeichnen
@@ -42,8 +46,8 @@ for i in range(1, len(t) + 1):
 for i in range(1, len(bengisu_x) + 1):
     frames.append(go.Frame(
         data=[
-            go.Scatter(x=x_herz, y=y_herz, mode="lines", line=dict(color="red", width=3)),  # Herz bleibt
-            go.Scatter(x=bengisu_x[:i], y=bengisu_y[:i], mode="lines", line=dict(color="blue", width=5))  # Buchstaben schreiben
+            go.Scatter(x=x_herz, y=y_herz, mode="lines", line=dict(color="red", width=3)),  # Erstes Herz bleibt
+            go.Scatter(x=bengisu_x[:i], y=bengisu_y[:i], mode="lines", line=dict(color="blue", width=5))  # Buchstaben erscheinen
         ]
     ))
 
@@ -52,8 +56,8 @@ for i in range(1, len(t) + 1):
     frames.append(go.Frame(
         data=[
             go.Scatter(x=x_herz, y=y_herz, mode="lines", line=dict(color="red", width=3)),  # Erstes Herz bleibt
-            go.Scatter(x=bengisu_x, y=bengisu_y, mode="lines", line=dict(color="blue", width=5)),  # Bengisu bleibt
-            go.Scatter(x=x_herz[:i], y=y_herz[:i] - 15, mode="lines", line=dict(color="red", width=3))  # Neues Herz unten
+            go.Scatter(x=bengisu_x, y=bengisu_y, mode="lines", line=dict(color="blue", width=5)),  # "Bengisu" bleibt
+            go.Scatter(x=x_herz2[:i], y=y_herz2[:i], mode="lines", line=dict(color="red", width=3))  # Zweites Herz erscheint
         ]
     ))
 
