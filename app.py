@@ -55,6 +55,7 @@ def filter_data(max_laufzeit):
 
 # Dash App initialisieren
 app = dash.Dash(__name__)
+server = app.server  # Für Render Deployment
 
 app.layout = html.Div([
     html.H1("Bengisuuuuuuuuuuuuu💗", style={'textAlign': 'center', 'fontWeight': 'bold', 'fontSize': '32px'}),
