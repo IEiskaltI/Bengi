@@ -61,11 +61,11 @@ app.layout = html.Div([
         'fontSize': '24px',
         'marginBottom': '10px'
     }),
-    html.Button("Start 💖", id="start-button", n_clicks=0, style={
-        'display': 'block', 'margin': 'auto', 'padding': '10px 20px',
-        'fontSize': '18px', 'backgroundColor': 'red', 'color': 'white', 'border': 'none',
-        'borderRadius': '5px', 'cursor': 'pointer'
-    }),
+    # html.Button("Start 💖", id="start-button", n_clicks=0, style={
+    #     'display': 'block', 'margin': 'auto', 'padding': '10px 20px',
+    #     'fontSize': '18px', 'backgroundColor': 'red', 'color': 'white', 'border': 'none',
+    #     'borderRadius': '5px', 'cursor': 'pointer'
+    # }),
     dcc.Graph(id="herz-animation", figure=fig, config={'responsive': True})
 ], style={'textAlign': 'center', 'maxWidth': '100%', 'overflowX': 'hidden'})
 
