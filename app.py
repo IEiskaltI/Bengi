@@ -36,33 +36,6 @@ for i in range(1, len(t) + 1):
         data=[go.Scatter(x=x_herz[:i], y=y_herz[:i], mode="lines", line=dict(color="red", width=3))]
     ))
 
-# ⏳ Leere Szene (Herz verschwindet, bevor "Bengisu" beginnt)
-frames.append(go.Frame(data=[]))
-
-# 2️⃣ "BENGISU" Buchstaben nacheinander zeichnen
-buchstaben_list = ["B", "E", "N", "G", "I", "S", "U"]
-for i in range(len(buchstaben_list)):
-    frames.append(go.Frame(
-        data=[
-            go.Scatter(x=buchstaben_koordinaten[buchstaben_list[j]][0],
-                       y=buchstaben_koordinaten[buchstaben_list[j]][1],
-                       mode="lines",
-                       line=dict(color="blue", width=5))
-            for j in range(i + 1)
-        ]
-    ))
-
-# 3️⃣ Zweites Herz zeichnen
-for i in range(1, len(t) + 1):
-    frames.append(go.Frame(
-        data=[
-            go.Scatter(x=buchstaben_koordinaten[b][0], y=buchstaben_koordinaten[b][1],
-                       mode="lines", line=dict(color="blue", width=5))
-            for b in buchstaben_list
-        ] + [
-            go.Scatter(x=x_herz2[:i], y=y_herz2[:i], mode="lines", line=dict(color="red", width=3))  # Zweites Herz erscheint
-        ]
-    ))
 
 # Plotly Figure
 fig = go.Figure(
